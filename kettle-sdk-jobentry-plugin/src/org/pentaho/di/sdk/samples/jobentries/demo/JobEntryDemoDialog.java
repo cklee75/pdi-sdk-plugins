@@ -121,7 +121,7 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
 	 * The open() method must return the met object of the job entry after the user has confirmed the dialog,
 	 * or null if the user cancelled the dialog.
 	 */
-    public JobEntryInterface open(){
+    public JobEntryInterface open_(){
 
     	// SWT code for setting up the dialog
         Shell parent = getParent();
@@ -249,6 +249,83 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
         return meta;
     }
 
+    public JobEntryInterface open(){
+    	// SWT code for setting up the dialog
+        Shell parent = getParent();
+        Display display = parent.getDisplay();
+
+		JobEntryDemoShell jobEntryDemoShell = new JobEntryDemoShell(parent,
+				props.getJobsDialogStyle(), PKG, meta, props.getMiddlePct(), changed);
+        shell = jobEntryDemoShell;
+        props.setLook(shell);
+        JobDialog.setShellImage(shell, meta);
+
+        wName = jobEntryDemoShell.getWName();
+        wOutcome = jobEntryDemoShell.getWOutcome();
+        
+        // save the job entry's changed flag
+        changed = meta.hasChanged();
+        
+        // The ModifyListener used on all controls. It will update the meta object to 
+		// indicate that changes are being made.
+        ModifyListener lsMod = new ModifyListener(){
+            public void modifyText(ModifyEvent e){
+                meta.setChanged();
+            }
+        };
+        
+//        int middle = props.getMiddlePct();
+        int margin = Const.MARGIN;
+
+        props.setLook(wName);
+        wName.addModifyListener(lsMod);
+        
+        wOutcome.addModifyListener(lsMod);
+		props.setLook(wOutcome);
+		
+		props.setLook(jobEntryDemoShell.getWlName());
+		props.setLook(jobEntryDemoShell.getWlOutcome());
+        
+		// at the bottom
+		BaseStepDialog.positionBottomButtons(
+				shell,
+				new Button[] { jobEntryDemoShell.getBtnOk(),
+						jobEntryDemoShell.getBtnCancel() }, margin, null);
+
+        // default listener (for hitting "enter")
+        /*SelectionAdapter lsDef = new SelectionAdapter(){
+            public void widgetDefaultSelected(SelectionEvent e){ok();}
+        };
+
+        jobEntryDemoShell.getWName().addSelectionListener(lsDef);*/
+
+		// Detect X or ALT-F4 or something that kills this window and cancel the dialog properly
+        shell.addShellListener(new ShellAdapter(){
+            public void shellClosed(ShellEvent e){
+                cancel();
+            }
+        });
+        
+		// populate the dialog with the values from the meta object
+        populateDialog();
+
+        // restore the changed flag to original value, as the modify listeners fire during dialog population 
+        meta.setChanged(changed);
+        
+        // restore dialog size and placement, or set default size if none saved yet 
+        BaseStepDialog.setSize(shell, 250, 140, false);
+        
+		// open dialog and enter event loop 
+        shell.open();
+        while (!shell.isDisposed()){
+            if (!display.readAndDispatch()){
+            	display.sleep();
+            }
+        }
+		// at this point the dialog has closed, so either ok() or cancel() have been executed
+        return meta;
+    }    
+    
     /**
      * This helper method is called once the dialog is closed. It saves the placement of
      * the dialog, so it can be restored when it is opened another time.
