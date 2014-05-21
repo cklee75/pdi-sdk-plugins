@@ -52,17 +52,6 @@ public class JobEntryDemoShell extends Shell {
 	}*/
 
 	/**
-	 * Create the shell.
-	 * @param display
-	 */
-	/*public JobEntryDemoShell(Display display) {
-		super(display, SWT.SHELL_TRIM);
-		createContents();
-	}*/
-
-	
-	
-	/**
 	 * @param parent
 	 * @param arg1
 	 */
@@ -75,42 +64,29 @@ public class JobEntryDemoShell extends Shell {
 		this.changed = changed;
 
         createContents();
-		setLayout(new FormLayout());
+		FormLayout formLayout = new FormLayout();
+		formLayout.marginLeft = 10;
+		formLayout.marginRight = 10;
+		formLayout.marginTop = 10;
+		formLayout.marginBottom = 10;
+		setLayout(formLayout);
 
 		btnOk = new Button(this, SWT.NONE);
 		btnOk.addMouseListener(lsOk(parent, PKG));
 		FormData fd_btnOk = new FormData();
-		fd_btnOk.left = new FormAttachment(0, 0);
-		//fd_btnOk.top = new FormAttachment(100, -25);
+		fd_btnOk.width = 50;
+		fd_btnOk.left = new FormAttachment(25);
 		fd_btnOk.bottom = new FormAttachment(100);
-		//fd_btnOk.right = new FormAttachment(6, 83);
 		btnOk.setLayoutData(fd_btnOk);
-//		btnOk.addSelectionListener(new SelectionAdapter() {
-//			@Override
-//			public void widgetDefaultSelected(SelectionEvent arg0) {
-//				
-//			}
-//		});
-//		FormData fd_btnOk = new FormData();
-//		fd_btnOk.right = new FormAttachment(0, 111);
-//		fd_btnOk.top = new FormAttachment(0, 227);
-//		fd_btnOk.left = new FormAttachment(0, 36);
-//		btnOk.setLayoutData(fd_btnOk);
 		btnOk.setText("OK");
 		
 		btnCancel = new Button(this, SWT.NONE);
 		btnCancel.addMouseListener(lsCancel(changed));
 		FormData fd_btnCancel = new FormData();
-		fd_btnCancel.top = new FormAttachment(btnOk, 0, SWT.TOP);
-		fd_btnCancel.left = new FormAttachment(btnOk, 64);
-		//fd_btnCancel.top = new FormAttachment(0);
-		fd_btnCancel.right = new FormAttachment(20, 112);
+		fd_btnCancel.width = 50;
+		fd_btnCancel.right = new FormAttachment(75);
+		fd_btnCancel.bottom = new FormAttachment(100);
 		btnCancel.setLayoutData(fd_btnCancel);
-//		FormData fd_btnCancel = new FormData();
-//		fd_btnCancel.right = new FormAttachment(0, 209);
-//		fd_btnCancel.top = new FormAttachment(0, 227);
-//		fd_btnCancel.left = new FormAttachment(0, 134);
-//		btnCancel.setLayoutData(fd_btnCancel);
 		btnCancel.setText("Cancel");
 		
        //int middle = props.getMiddlePct();
@@ -273,5 +249,6 @@ public class JobEntryDemoShell extends Shell {
 	        dispose();
 		}
 	}
+
 
 }
