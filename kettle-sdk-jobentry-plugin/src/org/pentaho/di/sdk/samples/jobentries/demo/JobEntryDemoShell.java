@@ -4,6 +4,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -14,11 +17,6 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.i18n.BaseMessages;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.events.ShellAdapter;
-import org.eclipse.swt.events.ShellEvent;
 
 public class JobEntryDemoShell extends Shell {
 	
@@ -82,10 +80,10 @@ public class JobEntryDemoShell extends Shell {
 		btnOk = new Button(this, SWT.NONE);
 		btnOk.addMouseListener(lsOk(parent, PKG));
 		FormData fd_btnOk = new FormData();
-		fd_btnOk.bottom = new FormAttachment(100, -237);
-		fd_btnOk.top = new FormAttachment(0);
-		fd_btnOk.right = new FormAttachment(6);
-		fd_btnOk.left = new FormAttachment(0);
+		fd_btnOk.left = new FormAttachment(0, 0);
+		//fd_btnOk.top = new FormAttachment(100, -25);
+		fd_btnOk.bottom = new FormAttachment(100);
+		//fd_btnOk.right = new FormAttachment(6, 83);
 		btnOk.setLayoutData(fd_btnOk);
 //		btnOk.addSelectionListener(new SelectionAdapter() {
 //			@Override
@@ -103,10 +101,10 @@ public class JobEntryDemoShell extends Shell {
 		btnCancel = new Button(this, SWT.NONE);
 		btnCancel.addMouseListener(lsCancel(changed));
 		FormData fd_btnCancel = new FormData();
-		fd_btnCancel.bottom = new FormAttachment(100, -237);
-		fd_btnCancel.top = new FormAttachment(0);
-		fd_btnCancel.right = new FormAttachment(100, -386);
-		fd_btnCancel.left = new FormAttachment(0);
+		fd_btnCancel.top = new FormAttachment(btnOk, 0, SWT.TOP);
+		fd_btnCancel.left = new FormAttachment(btnOk, 64);
+		//fd_btnCancel.top = new FormAttachment(0);
+		fd_btnCancel.right = new FormAttachment(20, 112);
 		btnCancel.setLayoutData(fd_btnCancel);
 //		FormData fd_btnCancel = new FormData();
 //		fd_btnCancel.right = new FormAttachment(0, 209);
@@ -215,9 +213,10 @@ public class JobEntryDemoShell extends Shell {
 	 * Create contents of the shell.
 	 */
 	protected void createContents() {
-		setText("SWT Application");
-		setSize(450, 300);
-
+		setText(BaseMessages.getString(PKG, "Demo.Shell.Title"));
+		setSize(250, 140);
+		Rectangle screenSize =  this.getDisplay().getPrimaryMonitor().getBounds();
+		this.setLocation((screenSize.width - this.getBounds().width) / 2, (screenSize.height - this.getBounds().height) / 2);
 	}
 
 	@Override

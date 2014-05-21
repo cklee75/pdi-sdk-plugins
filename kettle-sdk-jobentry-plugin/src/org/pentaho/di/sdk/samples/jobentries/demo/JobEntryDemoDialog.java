@@ -287,10 +287,10 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
 		props.setLook(jobEntryDemoShell.getWlOutcome());
         
 		// at the bottom
-		BaseStepDialog.positionBottomButtons(
-				shell,
-				new Button[] { jobEntryDemoShell.getBtnOk(),
-						jobEntryDemoShell.getBtnCancel() }, margin, null);
+//		BaseStepDialog.positionBottomButtons(
+//				shell,
+//				new Button[] { jobEntryDemoShell.getBtnOk(),
+//						jobEntryDemoShell.getBtnCancel() }, margin, null);
 
         // default listener (for hitting "enter")
         /*SelectionAdapter lsDef = new SelectionAdapter(){
@@ -313,7 +313,7 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
         meta.setChanged(changed);
         
         // restore dialog size and placement, or set default size if none saved yet 
-        BaseStepDialog.setSize(shell, 250, 140, false);
+        //BaseStepDialog.setSize(shell, 250, 140, false);
         
 		// open dialog and enter event loop 
         shell.open();
