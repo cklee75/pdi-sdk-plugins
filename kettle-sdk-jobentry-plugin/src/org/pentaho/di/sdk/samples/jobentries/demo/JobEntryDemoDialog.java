@@ -22,6 +22,9 @@
 
 package org.pentaho.di.sdk.samples.jobentries.demo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.ModifyEvent;
@@ -43,7 +46,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.job.JobHopMeta;
 import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.job.entries.columnsexist.JobEntryColumnsExist;
+import org.pentaho.di.job.entry.JobEntryCopy;
 import org.pentaho.di.job.entry.JobEntryDialogInterface;
 import org.pentaho.di.job.entry.JobEntryInterface;
 import org.pentaho.di.repository.Repository;
@@ -102,6 +108,37 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
         // it is safe to cast the JobEntryInterface object to the object handled by this dialog
         meta = (JobEntryDemo) jobEntryInt;
         // ensure there is a default name for new job entries
+        List<JobEntryCopy> jobEntryCopies =  jobMeta.getJobCopies();
+        List<JobHopMeta> jobHopMetas = jobMeta.getJobhops();
+        for (JobHopMeta jobHopMeta : jobHopMetas) {
+        	if (jobHopMeta.getToEntry() != null && 
+        			jobHopMeta.getToEntry().getObjectId() != null && 
+        			jobHopMeta.getToEntry().getObjectId().equals(jobEntryInt.getObjectId())) {
+        		System.out.println("Incoming job entry: " + jobHopMeta.getFromEntry().getName());
+        	}
+        }
+        
+        for (JobHopMeta jobHopMeta : jobHopMetas) {
+        	if (jobHopMeta.getFromEntry() != null && 
+        			jobHopMeta.getFromEntry().getObjectId() != null && 
+        			jobHopMeta.getFromEntry().getObjectId().equals(jobEntryInt.getObjectId())) {
+        		System.out.println("Outgoing job entry: " + jobHopMeta.getToEntry().getName());
+        		if (jobHopMeta.getToEntry().getEntry() instanceof JobEntryColumnsExist) {
+        			JobEntryColumnsExist columnsExist = (JobEntryColumnsExist) jobHopMeta.getToEntry().getEntry();
+        			System.out.println("Database: " + columnsExist.getDatabase());
+        			System.out.println("Table: " + columnsExist.getTablename());
+        			System.out.println("Column: " + Arrays.toString(columnsExist.arguments));
+        		}
+        	}
+        }
+        /*int posistion = 0;
+        for (JobEntryCopy jobEntryCopy : jobEntryCopies) {
+        	if (jobEntryCopy.getEntry().equals(jobEntryInt)) {
+        		break;
+        	}
+        	++posistion;
+        }
+        System.out.println("Previous entry: " + jobMeta.getJobEntry(posistion-1).getName());*/
         if (this.meta.getName() == null){
             this.meta.setName(BaseMessages.getString(PKG, "Demo.Default.Name"));
         }
@@ -121,7 +158,7 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
 	 * The open() method must return the met object of the job entry after the user has confirmed the dialog,
 	 * or null if the user cancelled the dialog.
 	 */
-    public JobEntryInterface open(){
+    public JobEntryInterface open_(){
 
     	// SWT code for setting up the dialog
         Shell parent = getParent();
@@ -249,6 +286,83 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
         return meta;
     }
 
+    public JobEntryInterface open(){
+    	// SWT code for setting up the dialog
+        Shell parent = getParent();
+        Display display = parent.getDisplay();
+
+		JobEntryDemoShell jobEntryDemoShell = new JobEntryDemoShell(parent,
+				props.getJobsDialogStyle(), PKG, meta, props.getMiddlePct(), changed);
+        shell = jobEntryDemoShell;
+        props.setLook(shell);
+        JobDialog.setShellImage(shell, meta);
+
+        wName = jobEntryDemoShell.getWName();
+        wOutcome = jobEntryDemoShell.getWOutcome();
+        
+        // save the job entry's changed flag
+        changed = meta.hasChanged();
+        
+        // The ModifyListener used on all controls. It will update the meta object to 
+		// indicate that changes are being made.
+        ModifyListener lsMod = new ModifyListener(){
+            public void modifyText(ModifyEvent e){
+                meta.setChanged();
+            }
+        };
+        
+//        int middle = props.getMiddlePct();
+        int margin = Const.MARGIN;
+
+        props.setLook(wName);
+        wName.addModifyListener(lsMod);
+        
+        wOutcome.addModifyListener(lsMod);
+		props.setLook(wOutcome);
+		
+		props.setLook(jobEntryDemoShell.getWlName());
+		props.setLook(jobEntryDemoShell.getWlOutcome());
+        
+		// at the bottom
+//		BaseStepDialog.positionBottomButtons(
+//				shell,
+//				new Button[] { jobEntryDemoShell.getBtnOk(),
+//						jobEntryDemoShell.getBtnCancel() }, margin, null);
+
+        // default listener (for hitting "enter")
+        /*SelectionAdapter lsDef = new SelectionAdapter(){
+            public void widgetDefaultSelected(SelectionEvent e){ok();}
+        };
+
+        jobEntryDemoShell.getWName().addSelectionListener(lsDef);*/
+
+		// Detect X or ALT-F4 or something that kills this window and cancel the dialog properly
+        shell.addShellListener(new ShellAdapter(){
+            public void shellClosed(ShellEvent e){
+                cancel();
+            }
+        });
+        
+		// populate the dialog with the values from the meta object
+        populateDialog();
+
+        // restore the changed flag to original value, as the modify listeners fire during dialog population 
+        meta.setChanged(changed);
+        
+        // restore dialog size and placement, or set default size if none saved yet 
+        //BaseStepDialog.setSize(shell, 250, 140, false);
+        
+		// open dialog and enter event loop 
+        shell.open();
+        while (!shell.isDisposed()){
+            if (!display.readAndDispatch()){
+            	display.sleep();
+            }
+        }
+		// at this point the dialog has closed, so either ok() or cancel() have been executed
+        return meta;
+    }    
+    
     /**
      * This helper method is called once the dialog is closed. It saves the placement of
      * the dialog, so it can be restored when it is opened another time.
