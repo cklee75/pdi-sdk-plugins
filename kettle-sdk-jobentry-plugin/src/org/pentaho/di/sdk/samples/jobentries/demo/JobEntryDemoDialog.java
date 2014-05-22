@@ -22,6 +22,9 @@
 
 package org.pentaho.di.sdk.samples.jobentries.demo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.events.ModifyEvent;
@@ -43,7 +46,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.i18n.BaseMessages;
+import org.pentaho.di.job.JobHopMeta;
 import org.pentaho.di.job.JobMeta;
+import org.pentaho.di.job.entries.columnsexist.JobEntryColumnsExist;
+import org.pentaho.di.job.entry.JobEntryCopy;
 import org.pentaho.di.job.entry.JobEntryDialogInterface;
 import org.pentaho.di.job.entry.JobEntryInterface;
 import org.pentaho.di.repository.Repository;
@@ -102,6 +108,37 @@ public class JobEntryDemoDialog extends JobEntryDialog implements JobEntryDialog
         // it is safe to cast the JobEntryInterface object to the object handled by this dialog
         meta = (JobEntryDemo) jobEntryInt;
         // ensure there is a default name for new job entries
+        List<JobEntryCopy> jobEntryCopies =  jobMeta.getJobCopies();
+        List<JobHopMeta> jobHopMetas = jobMeta.getJobhops();
+        for (JobHopMeta jobHopMeta : jobHopMetas) {
+        	if (jobHopMeta.getToEntry() != null && 
+        			jobHopMeta.getToEntry().getObjectId() != null && 
+        			jobHopMeta.getToEntry().getObjectId().equals(jobEntryInt.getObjectId())) {
+        		System.out.println("Incoming job entry: " + jobHopMeta.getFromEntry().getName());
+        	}
+        }
+        
+        for (JobHopMeta jobHopMeta : jobHopMetas) {
+        	if (jobHopMeta.getFromEntry() != null && 
+        			jobHopMeta.getFromEntry().getObjectId() != null && 
+        			jobHopMeta.getFromEntry().getObjectId().equals(jobEntryInt.getObjectId())) {
+        		System.out.println("Outgoing job entry: " + jobHopMeta.getToEntry().getName());
+        		if (jobHopMeta.getToEntry().getEntry() instanceof JobEntryColumnsExist) {
+        			JobEntryColumnsExist columnsExist = (JobEntryColumnsExist) jobHopMeta.getToEntry().getEntry();
+        			System.out.println("Database: " + columnsExist.getDatabase());
+        			System.out.println("Table: " + columnsExist.getTablename());
+        			System.out.println("Column: " + Arrays.toString(columnsExist.arguments));
+        		}
+        	}
+        }
+        /*int posistion = 0;
+        for (JobEntryCopy jobEntryCopy : jobEntryCopies) {
+        	if (jobEntryCopy.getEntry().equals(jobEntryInt)) {
+        		break;
+        	}
+        	++posistion;
+        }
+        System.out.println("Previous entry: " + jobMeta.getJobEntry(posistion-1).getName());*/
         if (this.meta.getName() == null){
             this.meta.setName(BaseMessages.getString(PKG, "Demo.Default.Name"));
         }

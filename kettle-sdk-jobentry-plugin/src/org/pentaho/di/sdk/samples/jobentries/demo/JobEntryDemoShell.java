@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.pentaho.di.core.Const;
 import org.pentaho.di.i18n.BaseMessages;
+import org.eclipse.swt.graphics.Point;
 
 public class JobEntryDemoShell extends Shell {
 	
@@ -58,6 +59,7 @@ public class JobEntryDemoShell extends Shell {
 	public JobEntryDemoShell(final Shell parent, final int arg1, final Class<?> PKG,
 			final JobEntryDemo jobEntryDemo, final int middle, final boolean changed) {
 		super(parent, arg1);
+		setMinimumSize(new Point(250, 100));
 		this.PKG = PKG;
 		this.meta = jobEntryDemo;
 		this.middle = middle;
@@ -74,20 +76,20 @@ public class JobEntryDemoShell extends Shell {
 		btnOk = new Button(this, SWT.NONE);
 		btnOk.addMouseListener(lsOk(parent, PKG));
 		FormData fd_btnOk = new FormData();
-		fd_btnOk.width = 50;
+		//fd_btnOk.width = 50;
 		fd_btnOk.left = new FormAttachment(25);
 		fd_btnOk.bottom = new FormAttachment(100);
 		btnOk.setLayoutData(fd_btnOk);
-		btnOk.setText("OK");
+		btnOk.setText(BaseMessages.getString(PKG, "System.Button.OK"));
 		
 		btnCancel = new Button(this, SWT.NONE);
 		btnCancel.addMouseListener(lsCancel(changed));
 		FormData fd_btnCancel = new FormData();
-		fd_btnCancel.width = 50;
+		//fd_btnCancel.width = 50;
 		fd_btnCancel.right = new FormAttachment(75);
 		fd_btnCancel.bottom = new FormAttachment(100);
 		btnCancel.setLayoutData(fd_btnCancel);
-		btnCancel.setText("Cancel");
+		btnCancel.setText(BaseMessages.getString(PKG, "System.Button.Cancel"));
 		
        //int middle = props.getMiddlePct();
 		//int middle = 1;
@@ -190,7 +192,7 @@ public class JobEntryDemoShell extends Shell {
 	 */
 	protected void createContents() {
 		setText(BaseMessages.getString(PKG, "Demo.Shell.Title"));
-		setSize(250, 140);
+		setSize(350, 200);
 		Rectangle screenSize =  this.getDisplay().getPrimaryMonitor().getBounds();
 		this.setLocation((screenSize.width - this.getBounds().width) / 2, (screenSize.height - this.getBounds().height) / 2);
 	}
@@ -249,6 +251,4 @@ public class JobEntryDemoShell extends Shell {
 	        dispose();
 		}
 	}
-
-
 }
