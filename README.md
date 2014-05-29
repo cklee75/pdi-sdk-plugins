@@ -18,14 +18,18 @@ B. PDI UI project
 2. Add Ivy managed dependencies library in new project wizard.
 3. Make do the same if want to put other PDI modules (e.g. Core, Engine) in debugging mode.
 
+C. Mi-Morphe PDI Job
+---
+1. Import maven project for pdi-job
+2. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the PDI Job path, provide unique name.
 
-C. For each PDI Job Entry
+D. For each PDI Job Entry
 -----
-1. Create maven project
+1. Add new maven project
 2. Set `my.mimos.sdp2.morphe.pdi`, `pdi-plugin`, `pdi-job`, 1.0.0-SNAPSHOT as parent POM.
 3. Set `my.mimos.sdp2.morphe.pdi.common`, `pdi-job`, `1.0.0-SNAPSHOT` as dependency.
 3. Create concrete child classes extend from MorpheJobEntryBase, MorpheJobEntryDialog, MorpheShell.
-4. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the PDI plugin path, provide unique name.
+4. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the current PDI plugin path, provide unique name.
 
 
 
