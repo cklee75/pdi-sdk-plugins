@@ -8,7 +8,9 @@ A. One time setup
 3. Swith to a tag to use a particular version instead of the latest, e.g.  
   `git checkout 5.0.6-R`
 4. Checkout Mi-Morphe from Internal SVN http://svn-ict.mimos.local/svn/mi-morphe/mi-morphe/trunk/06_Code_Directory/Pentaho/ (Will not require after has deployed to internal artifactory server)
-3. Install IvyDE at Eclipse from http://www.apache.org/dist/ant/ivyde/updatesite (ref: http://ant.apache.org/ivy/ivyde/download.cgi)
+3. Install WindowBuilder Pro (SWT Designer) from your Eclipse update site (ref: http://www.vogella.com/tutorials/EclipseWindowBuilder/article.html#swtdesignerinstallation)
+4. At Window -> Preference -> WindowBuilder -> SWT -> Code Generation -> Event handlers -> Event code generation: Create inner class.
+4. Install IvyDE at Eclipse from http://www.apache.org/dist/ant/ivyde/updatesite (ref: http://ant.apache.org/ivy/ivyde/download.cgi)
 4. At Window -> Preference -> Ivy -> Settings, check reload the setting on demand, add Ivy setting path `ivysettings.xml`, Property files `build.properties`.
 5. At Window -> Preference -> Ivy -> Classpath container, check Resolve dependencies in workspace.
 
@@ -30,6 +32,13 @@ D. For each PDI Job Entry
 3. Set `my.mimos.sdp2.morphe.pdi.common`, `pdi-job`, `1.0.0-SNAPSHOT` as dependency.
 3. Create concrete child classes extend from MorpheJobEntryBase, MorpheJobEntryDialog, MorpheShell.
 4. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the current PDI plugin path, provide unique name.
+5. 
 
+
+Note:
+---
+1. Official Help from Pentaho, HTML: http://infocenter.pentaho.com/help/nav/8_4, PDF: http://infocenter.pentaho.com/help/topic/pdi_embed_extend_guide/pdi_embed_extend_guide.pdf
+2. Do not modify plugin-in ID. Refactoring (move package) on code is allowed.
+2. 
 
 
