@@ -18,7 +18,10 @@ B. PDI UI project
 ---
 1. Add New Java project for PDI UI, point the path to PDI UI project.
 2. Add Ivy managed dependencies library in new project wizard.
-3. Make do the same if want to put other PDI modules (e.g. Core, Engine) in debugging mode.
+3. Right click project -> Build Path -> Link Source -> add location <pdi_root>\assembly\package-res\ui with folder name ui
+4. Right click project -> Build Path -> Link Source -> add location <pdi_root>\assembly\package-res with folder name package-res.
+4. Run the UI (i.e. Spoon) and ensure there is no error.
+3. Do the same if want to put other PDI modules (e.g. Core, Engine) in debugging mode.
 
 C. Mi-Morphe PDI Job
 ---
