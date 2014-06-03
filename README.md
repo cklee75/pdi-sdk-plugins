@@ -13,14 +13,16 @@ A. One time setup
 3. Install WindowBuilder Pro (SWT Designer) from your Eclipse update site (ref: http://www.vogella.com/tutorials/EclipseWindowBuilder/article.html#swtdesignerinstallation)
 4. At Window -> Preference -> WindowBuilder -> SWT -> Code Generation -> Event handlers -> Event code generation: Create inner class.
 4. Install IvyDE at Eclipse from http://www.apache.org/dist/ant/ivyde/updatesite (ref: http://ant.apache.org/ivy/ivyde/download.cgi)
-4. At Window -> Preference -> Ivy -> Settings, check reload the setting on demand, add Ivy setting path `ivysettings.xml`, Property files `build.properties`.
+4. At Window -> Preference -> Ivy -> Settings, check reload the setting on demand, add Ivy setting path `ivysettings.xml`, Property files `build.properties`. (Note: Just the filename without path)
 5. At Window -> Preference -> Ivy -> Classpath container, check Resolve dependencies in workspace.
 
 B. PDI UI project
 ---
-1. Add New Java project for PDI UI, point the path to PDI UI project (i.e. <pdi_root>\ui).
+1. Add New Java project for PDI UI, point the path to PDI UI project (i.e. `<pdi_root>\ui`).
 2. Add Ivy managed dependencies library in new project wizard. (May take a while for a new build)
-4. Right click project -> Build Path -> Link Source -> add location <pdi_root>\assembly\package-res with folder name package-res.
+4. Right click project -> Build Path -> Link Source -> add location `<pdi_root>\assembly\package-res` with folder name package-res.
+5. Add SWT of your platform to ivy.setting, e.g.  
+`<dependency org="org.eclipse.swt"       name="swt-win32"    rev="3.3.0.3346" transitive="false" />`
 4. Run the UI (i.e. Spoon) and ensure there is no error. 
 3. Do the same if want to put other PDI modules (e.g. Core, Engine) in debugging mode.
 
