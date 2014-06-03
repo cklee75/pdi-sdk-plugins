@@ -5,7 +5,7 @@ A. One time setup
 1. Install Oracle JDK 7 from http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html.
 2. Install Git for Window from http://msysgit.github.io/
 2. Clone Pentaho PDI from https://github.com/cklee75/pentaho-kettle.git (In future will be from internal SVN)  
-  `git clone https://github.com/cklee75/pentaho-kettle`
+  `git clone https://github.com/cklee75/pentaho-kettle.git`
 3. Swith to a tag to use a particular version instead of the latest, e.g.  
   `cd pentaho-kettle`  
   `git checkout 5.0.6b-R`
