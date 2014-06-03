@@ -8,7 +8,7 @@ A. One time setup
   `git clone https://github.com/cklee75/pentaho-kettle`
 3. Swith to a tag to use a particular version instead of the latest, e.g.  
   `cd pentaho-kettle`  
-  `git checkout 5.0.6-R`
+  `git checkout 5.0.6a-R`
 4. Checkout Mi-Morphe from Internal SVN http://svn-ict.mimos.local/svn/mi-morphe/mi-morphe/trunk/06_Code_Directory/Pentaho/ (Will not require after has deployed to internal artifactory server)
 3. Install WindowBuilder Pro (SWT Designer) from your Eclipse update site (ref: http://www.vogella.com/tutorials/EclipseWindowBuilder/article.html#swtdesignerinstallation)
 4. At Window -> Preference -> WindowBuilder -> SWT -> Code Generation -> Event handlers -> Event code generation: Create inner class.
