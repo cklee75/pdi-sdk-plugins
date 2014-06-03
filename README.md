@@ -42,6 +42,11 @@ D. For each PDI Job Entry
 Note:
 ---
 1. Official Help from Pentaho, HTML: http://infocenter.pentaho.com/help/nav/8_4, PDF: http://infocenter.pentaho.com/help/topic/pdi_embed_extend_guide/pdi_embed_extend_guide.pdf
+2. E-Book http://library.books24x7.com  
+  Pentaho Kettle Solutions: Building Open Source ETL Solutions with Pentaho Data Integration by  Matt Casters
+3. E-Book http://site.ebrary.com/lib/mimos/home.action  
+  Pentaho Data Integration 4 Cookbook by Sergio Pulvirenti, Adrián Carina Roldán, María  
+  Pentaho 3.2 Data Integration: Beginner's Guide by Carina Roldan, Maria 
 2. Do not modify plugin-in ID. Refactoring (move package) on code is allowed.
 
 
