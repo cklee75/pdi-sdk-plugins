@@ -27,7 +27,7 @@ B. PDI UI project
 C. Mi-Morphe PDI Job
 ---
 1. Import maven project for pdi-job.
-2. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the PDI Job path, provide unique name.
+2. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the PDI Job path (until src\main\java folder), provide unique name.
 
 D. For each PDI Job Entry
 -----
@@ -35,7 +35,7 @@ D. For each PDI Job Entry
 2. Set `my.mimos.sdp2.morphe.pdi`, `pdi-plugin`, `pdi-job`, 1.0.0-SNAPSHOT as parent POM.
 3. Set `my.mimos.sdp2.morphe.pdi.common`, `pdi-job`, `1.0.0-SNAPSHOT` as dependency.
 3. Create concrete child classes extend from MorpheJobEntryBase, MorpheJobEntryDialog, MorpheShell.
-4. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the current PDI plugin path, provide unique name.
+4. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the current PDI plugin path (until src\main\java folder), provide unique name.
 5. Add `-DKETTLE_PLUGIN_CLASSES=<full_qualified_Job_Entry_name>,<another_ull_qualified_Job_Entry_name>` (without bracket) as VM arguments at PDI UI Spoon.
 
 
