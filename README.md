@@ -19,7 +19,7 @@ A. One time setup
 B. PDI UI project
 ---
 1. Add New Java project for PDI UI, point the path to PDI UI project (i.e. `<pdi_root>\ui`).
-2. Add Ivy managed dependencies library in new project wizard. (May take a while for a new build)
+2. Add Ivy managed dependencies library in new project wizard. Click Next (NOT Finish) -> Add Library -> Ivy Dependency (May take a while for a new build)
 4. Right click project -> Build Path -> Link Source -> add location `<pdi_root>\assembly\package-res` with folder name package-res.
 5. Add SWT of your platform to ivy.setting, e.g.  
 `<dependency org="org.eclipse.swt"       name="swt-win32"    rev="3.3.0.3346" transitive="false" />`
