@@ -8,7 +8,7 @@ A. One time setup
   `git clone https://github.com/cklee75/pentaho-kettle`
 3. Swith to a tag to use a particular version instead of the latest, e.g.  
   `cd pentaho-kettle`  
-  `git checkout 5.0.6a-R`
+  `git checkout 5.0.6b-R`
 4. Checkout Mi-Morphe from Internal SVN http://svn-ict.mimos.local/svn/mi-morphe/mi-morphe/trunk/06_Code_Directory/Pentaho/ (Will not require after has deployed to internal artifactory server)
 3. Install WindowBuilder Pro (SWT Designer) from your Eclipse update site (ref: http://www.vogella.com/tutorials/EclipseWindowBuilder/article.html#swtdesignerinstallation)
 4. At Window -> Preference -> WindowBuilder -> SWT -> Code Generation -> Event handlers -> Event code generation: Create inner class.
@@ -19,10 +19,8 @@ A. One time setup
 B. PDI UI project
 ---
 1. Add New Java project for PDI UI, point the path to PDI UI project (i.e. `<pdi_root>\ui`).
-2. Add Ivy managed dependencies library in new project wizard. Click Next (NOT Finish) -> Add Library -> Ivy Dependency (May take a while for a new build)
+2. Add Ivy managed dependencies library in new project wizard. Click Next (NOT Finish) -> Add Library -> IvyDE Managed Dependency (May take a while for a new build). You should only see JRE System Library and Ivy as library folders.
 4. Right click project -> Build Path -> Link Source -> add location `<pdi_root>\assembly\package-res` with folder name package-res.
-5. Add SWT of your platform to ivy.setting, e.g.  
-`<dependency org="org.eclipse.swt"       name="swt-win32"    rev="3.3.0.3346" transitive="false" />`
 4. Run the UI (i.e. Spoon) and ensure there is no error. 
 3. Do the same if want to put other PDI modules (e.g. Core, Engine) in debugging mode.
 
