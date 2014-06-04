@@ -6,15 +6,17 @@ A. One time setup
 2. Install Git for Window from http://msysgit.github.io/
 2. Clone Pentaho PDI from https://github.com/cklee75/pentaho-kettle.git (In future will be from internal SVN)  
   `git clone https://github.com/cklee75/pentaho-kettle.git`
-3. Swith to a tag to use a particular version instead of the latest, e.g.  
+3. Swith to a tag to use a particular version instead of the latest, i.e.  
   `cd pentaho-kettle`  
   `git checkout 5.0.6b-R`
-4. Checkout Mi-Morphe from Internal SVN http://svn-ict.mimos.local/svn/mi-morphe/mi-morphe/trunk/06_Code_Directory/Pentaho/ (In future wll not be required after has deployed to internal artifactory server)
-3. Install WindowBuilder Pro (SWT Designer) from your Eclipse update site (ref: http://www.vogella.com/tutorials/EclipseWindowBuilder/article.html#swtdesignerinstallation)
+2. Install IDE either STS (http://spring.io/tools/sts/all) or Eclipse (https://www.eclipse.org/downloads/)
+3. Install m2e from your Eclipse update site. (Skip if you are using STS as it has been built-in)
+3. Install WindowBuilder Pro (SWT Designer) from your IDE/Eclipse update site (ref: http://www.vogella.com/tutorials/EclipseWindowBuilder/article.html#swtdesignerinstallation)
 4. At Window -> Preference -> WindowBuilder -> SWT -> Code Generation -> Event handlers -> Event code generation: Create inner class.
-4. Install IvyDE at Eclipse from http://www.apache.org/dist/ant/ivyde/updatesite (ref: http://ant.apache.org/ivy/ivyde/download.cgi)
+4. Install IvyDE at IDE/Eclipse from http://www.apache.org/dist/ant/ivyde/updatesite (ref: http://ant.apache.org/ivy/ivyde/download.cgi)
 4. At Window -> Preference -> Ivy -> Settings, check reload the setting on demand, add Ivy setting path `ivysettings.xml`, Property files `build.properties`. (Note: Just the filename without path)
 5. At Window -> Preference -> Ivy -> Classpath container, check Resolve dependencies in workspace.
+4. Checkout Mi-Morphe from Internal SVN http://svn-ict.mimos.local/svn/mi-morphe/mi-morphe/trunk/06_Code_Directory/Pentaho/ (In future wll not be required after has deployed to internal artifactory server)
 
 B. PDI UI project
 ---
