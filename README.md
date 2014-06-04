@@ -41,14 +41,17 @@ D. For each PDI Job Entry
 5. Add `-DKETTLE_PLUGIN_CLASSES=<full_qualified_Job_Entry_name>,<another_ull_qualified_Job_Entry_name>` (without bracket) as VM arguments at PDI UI Spoon.
 
 
-Note:
+References:
 ---
 1. Official Help from Pentaho, HTML: http://infocenter.pentaho.com/help/nav/8_4, PDF: http://infocenter.pentaho.com/help/topic/pdi_embed_extend_guide/pdi_embed_extend_guide.pdf
 2. E-Book http://library.books24x7.com  
   Pentaho Kettle Solutions: Building Open Source ETL Solutions with Pentaho Data Integration by  Matt Casters
 3. E-Book http://site.ebrary.com/lib/mimos/home.action  
   Pentaho Data Integration 4 Cookbook by Sergio Pulvirenti, Adrián Carina Roldán, María  
-  Pentaho 3.2 Data Integration: Beginner's Guide by Carina Roldan, Maria 
+  Pentaho 3.2 Data Integration: Beginner's Guide by Carina Roldan, Maria
+
+Note:
+---
 2. Do not modify plugin-in ID. Refactoring (move package) on code is allowed.
 
 
