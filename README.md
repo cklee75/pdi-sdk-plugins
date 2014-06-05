@@ -13,6 +13,7 @@ A. One time setup
 3. Install m2e from your Eclipse update site. (Skip if you are using STS as it has been built-in)
 3. Install WindowBuilder Pro (SWT Designer) from your IDE/Eclipse update site (ref: http://www.vogella.com/tutorials/EclipseWindowBuilder/article.html#swtdesignerinstallation)
 4. At Window -> Preference -> WindowBuilder -> SWT -> Code Generation -> Event handlers -> Event code generation: Create inner class.
+5. At Window -> Preference -> WindowBuilder -> SWT -> Code Generation -> Varible generation -> check Field.
 4. Install IvyDE at IDE/Eclipse from http://www.apache.org/dist/ant/ivyde/updatesite (ref: http://ant.apache.org/ivy/ivyde/download.cgi)
 4. At Window -> Preference -> Ivy -> Settings, check reload the setting on demand, add Ivy setting path `ivysettings.xml`, Property files `build.properties`. (Note: Just the filename without path)
 5. At Window -> Preference -> Ivy -> Classpath container, check Resolve dependencies in workspace.
