@@ -21,7 +21,7 @@ A. One time setup
 
 B. PDI UI project
 ---
-1. Add New Java project for PDI UI, point the path to PDI UI project (i.e. `<pdi_root>\ui`).
+1. Add **New Java project** for PDI UI, point the path to PDI UI project (i.e. `<pdi_root>\ui`).
 2. Add Ivy managed dependencies library in new project wizard. Click Next (NOT Finish) -> Add Library -> IvyDE Managed Dependency (May take a while for a new build). You should only see JRE System Library and Ivy as library folders.
 4. Right click project -> Build Path -> Link Source -> add location `<pdi_root>\assembly\package-res` with folder name package-res.
 4. Run the UI (i.e. org.pentaho.di.ui.spoon.Spoon) and ensure there is no error. 
@@ -29,17 +29,17 @@ B. PDI UI project
 
 C. Mi-Morphe PDI Job
 ---
-1. Import maven project for pdi-job.
+1. **Import maven project** for pdi-job.
 2. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the PDI Job path (until src\main\java folder), provide unique name.
 
 D. For each PDI Job Entry
 -----
-1. Add new maven project.
+1. **Add new maven project**.
 2. Set `my.mimos.sdp2.morphe.pdi`, `pdi-plugin`, `pdi-job`, 1.0.0-SNAPSHOT as parent POM.
 3. Set `my.mimos.sdp2.morphe.pdi.common`, `pdi-job`, `1.0.0-SNAPSHOT` as dependency.
 3. Create concrete child classes extend from MorpheJobEntryBase, MorpheJobEntryDialog, MorpheShell.
 4. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the current PDI plugin path (until src\main\java folder), provide unique name.
-5. Add `-DKETTLE_PLUGIN_CLASSES=<full_qualified_Job_Entry_name>,<another_ull_qualified_Job_Entry_name>` (without bracket) as VM arguments at PDI UI Spoon.
+5. Add `-DKETTLE_PLUGIN_CLASSES=<full_qualified_Job_Entry_name>,<another_ull_qualified_Job_Entry_name>` (without bracket, e.g. `-DKETTLE_PLUGIN_CLASSES=my.mimos.sdp2.morphe.pdi.job.dq.duplicate.date.DuplicateDate`) as **VM arguments** at PDI UI Spoon.
 
 
 References:
