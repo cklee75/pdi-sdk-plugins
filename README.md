@@ -39,6 +39,7 @@ D. For each PDI Job Entry
 3. Set `my.mimos.sdp2.morphe.pdi.common`, `pdi-job`, `1.0.0-SNAPSHOT` as dependency.
 3. Create concrete child classes extend from MorpheJobEntryBase, MorpheJobEntryDialog, MorpheShell.
 4. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the current PDI plugin path (until src\main\java folder), provide unique name.
+5. At PDI UI Ant project, right click -> Build Path -> Link Source -> add the current PDI plugin path (until src\main\resources folder), provide unique name.
 5. Add `-DKETTLE_PLUGIN_CLASSES=<full_qualified_Job_Entry_name>,<another_ull_qualified_Job_Entry_name>` (without bracket, e.g. `-DKETTLE_PLUGIN_CLASSES=my.mimos.sdp2.morphe.pdi.job.dq.duplicate.date.DuplicateDate`) as **VM arguments** at PDI UI Spoon.
 
 
